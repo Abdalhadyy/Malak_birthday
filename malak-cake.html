@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, Small Cake 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--night:#2a1650;--pink:#ff6fa8;--peach:#ffb48a;--lav:#c9a6ff;--cream:#fff6ec;--sun:#ffd96a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:'Fredoka',system-ui,sans-serif;color:var(--cream);background:var(--night);overflow:hidden;transition:background 1.2s;-webkit-tap-highlight-color:transparent}
+body.lit{background:radial-gradient(120% 90% at 50% 0%,#ffc2a0 0%,#ff6fa8 42%,#8a4dff 100%)}
+main{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:22px 20px 26px}
+.top{min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.small{font-size:1.05rem;font-weight:500;color:var(--lav);margin:6px 0}
+.name{font-weight:700;font-size:clamp(2.4rem,12vw,4rem);line-height:1.1;color:var(--sun);text-shadow:0 4px 0 rgba(0,0,0,.25)}
+.wish{display:none}
+body.lit .pre{display:none}
+body.lit .wish{display:flex;flex-direction:column;align-items:center;gap:10px;animation:pop .7s cubic-bezier(.2,1.6,.4,1)}
+.wish h1{font-weight:700;font-size:clamp(2.3rem,11.5vw,3.8rem);line-height:1.1;text-shadow:0 4px 0 rgba(0,0,0,.25)}
+.wish h1 b{color:var(--sun)}
+.wish p{font-size:1.1rem;font-weight:500;line-height:1.6;max-width:20em}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.cake{width:min(78vw,340px);height:auto;filter:drop-shadow(0 18px 24px rgba(0,0,0,.35));cursor:pointer}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .35s ease-in-out infinite alternate;transition:opacity .4s,transform .4s}
+.flame:nth-child(2n){animation-duration:.45s}
+@keyframes flick{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.88,1.12) rotate(3deg)}}
+.out .flame{animation:none;opacity:0;transform:scale(.2)}
+.smoke{opacity:0;fill:#d9d4ee;transform-box:fill-box}
+.out .smoke{animation:smoke 1.6s ease-out forwards}
+@keyframes smoke{0%{opacity:.7;transform:translateY(0)}100%{opacity:0;transform:translateY(-34px)}}
+button{font:700 1.25rem 'Fredoka',sans-serif;color:var(--night);background:var(--sun);border:0;border-radius:999px;padding:14px 34px;box-shadow:0 6px 0 #c99a00;cursor:pointer;transition:transform .1s,box-shadow .1s;touch-action:manipulation}
+button:active{transform:translateY(5px);box-shadow:0 1px 0 #c99a00}
+button:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
+.balloon{position:fixed;bottom:-120px;width:54px;height:68px;border-radius:50% 50% 48% 48%;z-index:1;animation:rise linear forwards}
+.balloon::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:46px;background:rgba(255,255,255,.55)}
+@keyframes rise{to{transform:translateY(-125vh) translateX(var(--dx))}}
+@media (prefers-reduced-motion:reduce){.flame{animation:none}.balloon{display:none}}
+.cake{max-height:44vh}
+@media (min-width:700px){.cake{width:420px;max-height:48vh}.top{min-height:250px}.small{font-size:1.3rem}.wish p{font-size:1.35rem;max-width:26em}button{font-size:1.45rem;padding:16px 44px}.balloon{width:80px;height:100px}.balloon::after{height:62px}}
+@media (max-height:560px){main{padding:10px 16px}.top{min-height:0}.cake{width:min(60vw,300px);max-height:40vh}.name{font-size:2rem}.wish h1{font-size:2rem}.wish p,.small{font-size:.95rem;margin:2px 0}button{padding:10px 26px;font-size:1.05rem}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<main>
+  <div class="top">
+    <div class="pre">
+      <p class="small">Tonight belongs to</p>
+      <h1 class="name">Malak Mohamed</h1>
+      <p class="small">Blow out the candles to see your surprise</p>
+    </div>
+    <div class="wish">
+      <h1>Happy Birthday,<br><b>Small Cake</b></h1>
+      <p>Wishing you a year as sweet as you are. Make a big wish, Malak 🎂</p>
+    </div>
+  </div>
+  <svg id="cake" class="cake" viewBox="0 0 300 290" role="img" aria-label="Birthday cake">
+    <ellipse cx="150" cy="270" rx="136" ry="14" fill="#f1e6ff"/>
+    <rect x="28" y="178" width="244" height="86" rx="18" fill="#ff6fa8"/>
+    <path d="M28 196a18 18 0 0 1 18-18h208a18 18 0 0 1 18 18v6c-10 0-10 16-22 16s-12-12-24-12-12 18-24 18-12-14-24-14-12 16-24 16-12-16-24-16-12 14-24 14-12-18-24-18-12 12-24 12-12-16-24-16z" fill="#fff6ec"/>
+    <circle cx="62" cy="236" r="6" fill="#ffd96a"/><circle cx="108" cy="244" r="6" fill="#c9a6ff"/><circle cx="154" cy="236" r="6" fill="#ffb48a"/><circle cx="200" cy="244" r="6" fill="#ffd96a"/><circle cx="240" cy="236" r="6" fill="#c9a6ff"/>
+    <rect x="64" y="112" width="172" height="72" rx="16" fill="#ffb48a"/>
+    <path d="M64 128a16 16 0 0 1 16-16h140a16 16 0 0 1 16 16v4c-8 0-8 12-18 12s-10-10-20-10-10 14-20 14-10-12-20-12-10 12-20 12-10-14-20-14-10 12-20 12-10-10-20-10z" fill="#fff6ec"/>
+    <rect x="92" y="76" width="10" height="38" rx="3" fill="#c9a6ff"/><rect x="121" y="76" width="10" height="38" rx="3" fill="#ff6fa8"/><rect x="145" y="72" width="10" height="42" rx="3" fill="#ffd96a"/><rect x="169" y="76" width="10" height="38" rx="3" fill="#ff6fa8"/><rect x="198" y="76" width="10" height="38" rx="3" fill="#c9a6ff"/>
+    <g>
+      <path class="flame" d="M97 52c7 9 7 15 0 22-7-7-7-13 0-22z" fill="#ffb703"/><path class="flame" d="M126 52c7 9 7 15 0 22-7-7-7-13 0-22z" fill="#ffb703"/><path class="flame" d="M150 48c7 9 7 15 0 22-7-7-7-13 0-22z" fill="#ffb703"/><path class="flame" d="M174 52c7 9 7 15 0 22-7-7-7-13 0-22z" fill="#ffb703"/><path class="flame" d="M203 52c7 9 7 15 0 22-7-7-7-13 0-22z" fill="#ffb703"/>
+    </g>
+    <g><circle class="smoke" cx="97" cy="62" r="5"/><circle class="smoke" cx="126" cy="62" r="5"/><circle class="smoke" cx="150" cy="58" r="5"/><circle class="smoke" cx="174" cy="62" r="5"/><circle class="smoke" cx="203" cy="62" r="5"/></g>
+  </svg>
+  <button id="btn" type="button">Blow out the candles 🕯️</button>
+</main>
+<script>
+(function(){
+  var cv=document.getElementById('fx'),cx=cv.getContext('2d'),W,H,P=[],running=false;
+  var cols=['#ff6fa8','#ffd96a','#c9a6ff','#ffb48a','#fff6ec','#7ad7ff'];
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){var d=window.devicePixelRatio||1;W=cv.width=innerWidth*d;H=cv.height=innerHeight*d}
+  addEventListener('resize',size);size();
+  function burst(n,x,y){
+    var d=window.devicePixelRatio||1;if(reduce)n=Math.round(n/4);
+    for(var i=0;i<n;i++){var a=Math.random()*6.283,s=(6+Math.random()*12)*d;
+      P.push({x:x||W/2,y:y||H*.45,vx:Math.cos(a)*s,vy:Math.sin(a)*s-6*d,w:(6+Math.random()*7)*d,h:(10+Math.random()*8)*d,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:cols[i%cols.length],g:.35*d,life:140+Math.random()*60})}
+    if(!running){running=true;requestAnimationFrame(tick)}
+  }
+  function tick(){
+    cx.clearRect(0,0,W,H);
+    for(var i=P.length-1;i>=0;i--){var p=P[i];p.vx*=.985;p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life--;
+      if(p.life<=0||p.y>H+40){P.splice(i,1);continue}
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.globalAlpha=Math.min(1,p.life/40);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()}
+    if(P.length)requestAnimationFrame(tick);else running=false;
+  }
+  function balloons(){
+    if(reduce)return;
+    var bc=['#ff6fa8','#ffd96a','#c9a6ff','#ffb48a','#7ad7ff','#ff9a3d'];
+    for(var i=0;i<14;i++){var b=document.createElement('div');b.className='balloon';
+      b.style.left=(Math.random()*92)+'vw';b.style.background=bc[i%bc.length];
+      b.style.animationDuration=(6+Math.random()*5)+'s';b.style.animationDelay=(Math.random()*1.8)+'s';
+      b.style.setProperty('--dx',((Math.random()-.5)*80)+'px');document.body.appendChild(b);
+      setTimeout((function(el){return function(){el.remove()}})(b),14000)}
+  }
+  var cake=document.getElementById('cake'),btn=document.getElementById('btn'),done=false;
+  function blow(){
+    if(done){burst(120);balloons();return}
+    done=true;cake.classList.add('out');document.body.classList.add('lit');
+    btn.textContent='More celebration 🎉';burst(180);balloons();
+    setTimeout(function(){burst(120,W*.2,H*.5);burst(120,W*.8,H*.5)},500);
+    try{navigator.vibrate&&navigator.vibrate([80,40,80])}catch(e){}
+  }
+  btn.addEventListener('click',blow);cake.addEventListener('click',blow);
+})();
+</script>
+</body>
+</html>
